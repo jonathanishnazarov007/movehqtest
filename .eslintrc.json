@@ -1,0 +1,88 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*.js"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "unused-imports",
+        "eslint-plugin-import"
+      ],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "paths": ["src"],
+            "extensions": [".ts", ".jsx", "js", ".tsx"]
+          }
+        }
+      },
+      "rules": {
+        "import/no-unresolved": [2],
+        "import/default": 2,
+        "import/export": 2,
+        "import/group-exports": 2,
+        "@typescript-eslint/no-unnecessary-type-assertion": ["error"],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "salient",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "salient",
+            "style": "kebab-case"
+          }
+        ],
+        "comma-dangle": ["error", "always-multiline"],
+        "indent": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "singleQuote": true,
+            "endOfLine": "auto",
+            "trailingComma": "all"
+          },
+          {
+            "usePrettierrc": false
+          }
+        ],
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "no-console": "warn"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.json"],
+      "extends": ["plugin:json/recommended-with-comments"]
+    }
+  ]
+}
